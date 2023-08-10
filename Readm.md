@@ -2,9 +2,14 @@
 
 pipenv lock
 
-2 - Instalando o django
+2 - Instalando o django + Dependências
 
 pipenv install django
+pipenv install djangorestframework
+pipenv install django-cors-headers
+pipenv install psycopg2-binary
+pipenv install pillow
+pipenv djangorestframework-simplejwt
 
 3 - Entrar no ambiente do python
 
@@ -21,4 +26,12 @@ python manage.py runserver
 6 - Criar apps
 
 python manage.py startapp users
+
+7 - Criar as migration caso tenha alteração no model
+
+python manage.py makemigrations
+
+8 - Execute migration
+
+python manage.py migrate
 
