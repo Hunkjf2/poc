@@ -21,7 +21,7 @@ django-admin startproject api .
 
 5 - Startar o servidor do django
 
-python manage.py runserver
+python manage.py runserver 7000
 
 6 - Criar apps
 
@@ -35,3 +35,6 @@ python manage.py makemigrations
 
 python manage.py migrate
 
+9 - Executar os test
+
+python manage.py test departament
