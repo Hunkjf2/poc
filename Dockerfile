@@ -33,7 +33,7 @@ RUN useradd -m python
 RUN mkdir /usr/app && chown python:python /usr/app
 WORKDIR /usr/app
 COPY --from=builder /usr/app/venv ./venv
-COPY . .
+COPY projeto/ .
 USER python
 
 ENV PATH="/usr/app/venv/bin:$PATH"
