@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'users',
-    'department'
+    'department',
+    'drf_spectacular'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -86,25 +87,11 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            'options': '-c search_path=test'
-        },
-        'NAME': 'test', 
+        'NAME': 'postgres', 
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost', 
         'PORT': '5432',
-        'TEST': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'OPTIONS': {
-                'options': '-c search_path=test'
-            },
-            'NAME': 'test', 
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'localhost', 
-            'PORT': '5432',
-        },
     }
 }
 
@@ -126,6 +113,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 
 
 # Internationalization

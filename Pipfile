@@ -9,6 +9,7 @@ psycopg2-binary = "*"
 djangorestframework = "*"
 pillow = "*"
 django-cors-headers = "*"
+drf-spectacular = "*"
 
 [dev-packages]
 
