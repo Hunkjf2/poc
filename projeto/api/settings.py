@@ -9,12 +9,25 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
+import environ
 
 from pathlib import Path
 
+
+env = environ.Env(
+    DEBUG=(bool, False),
+    DB_USER=(str, 'postgres'),
+    DB_PASSWORD=(str, 'postgres'),
+    DB_NAME=(str, 'postgres'),
+    DB_HOST=(str, '127.0.0.1'),
+    DB_PORT=(int, 5432),
+    ALLOWED_HOSTS=(list, ['localhost', '127.0.0.1']),
+)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -23,11 +36,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)w0tcd+q4knkj1$36i#6e(-n620(sv=w^mocalr!+fyj%tj8!e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -87,11 +100,11 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres', 
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost', 
-        'PORT': '5432',
+        'NAME': env('DB_NAME'), 
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'), 
+        'PORT': env('DB_PORT'),
     }
 }
 
