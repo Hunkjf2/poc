@@ -11,6 +11,7 @@ pillow = "*"
 django-cors-headers = "*"
 drf-spectacular = "*"
 django-environ = "*"
+pdfkit = "*"
 
 [dev-packages]
 

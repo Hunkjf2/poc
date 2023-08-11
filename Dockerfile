@@ -24,7 +24,7 @@ FROM python:3.11.4-slim as runner
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
-    libpq-dev=15.3-0+deb12u1 && \
+    libpq-dev=15.3-0+deb12u1 wkhtmltopdf=0.12.6-2+b1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
