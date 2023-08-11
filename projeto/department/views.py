@@ -1,14 +1,13 @@
 from django.http import HttpResponse
 from django.template.loader import get_template
-from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
-from rest_framework.response import Response
+from rest_framework.generics import RetrieveAPIView, RetrieveUpdateDestroyAPIView, ListCreateAPIView
 
 from . import serializers
 from .models import Department
 from pdfkit import from_string
 class ListCreateDepartamentoView(ListCreateAPIView):
     queryset = Department.objects.all()
-    serializer_class = serializers.DepartamentoCreateSerializer
+    serializer_class = serializers.DepartamentoSerializer
 
 class DetailApiView(RetrieveUpdateDestroyAPIView):
     queryset = Department.objects.all()
