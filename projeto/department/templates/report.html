@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Relatório de usuários</title>
+    <style>
+      table {
+        width: 100%;
+        border: 1px solid #b3adad;
+        border-collapse: collapse;
+        padding: 5px;
+      }
+      table th {
+        border: 1px solid #b3adad;
+        padding: 5px;
+        background: #f0f0f0;
+        color: #313030;
+      }
+      table td {
+        border: 1px solid #b3adad;
+        text-align: center;
+        padding: 5px;
+        background: #ffffff;
+        color: #313030;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Relatório de usuários do departamento {{ department }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Cargo</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{user.nome}}</td>
+          <td>{{user.cargo}}</td>
+          <td>{{user.email}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

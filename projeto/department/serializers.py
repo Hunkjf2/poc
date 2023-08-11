@@ -25,3 +25,8 @@ class DepartamentoDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model=Department
         fields= ("id",)
+
+class UsersByDepartamentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Department
+        fields= ("id","descricao","users")
