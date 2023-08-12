@@ -1,4 +1,5 @@
-from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveAPIView
+
 from rest_framework.response import Response
 from rest_framework import status
 from . import serializers
@@ -28,17 +29,11 @@ class ListarUsersView(ListAPIView):
         data = serializer.data
         return Response(data, status=status.HTTP_200_OK)
     
-    
-class ListarOneUsersView(ListAPIView):
 
+class ListarOneUsersView(RetrieveAPIView):
+    queryset = Users.objects.all()
     serializer_class = serializers.UsersSerializer
 
-    def get(self, request, id):
-
-        queryset = Users.objects.filter(id=id)
-        serializer = self.get_serializer(queryset, many=True)
-        data = serializer.data
-        return Response(data, status=status.HTTP_200_OK)
     
 class EditUsersView(UpdateAPIView):
 
