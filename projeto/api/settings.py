@@ -71,6 +71,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'jwt_middleware.middleware.JwtMiddleware',
+
 ]
 
 ROOT_URLCONF = 'api.urls'

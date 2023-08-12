@@ -1,10 +1,35 @@
-from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView, RetrieveAPIView, GenericAPIView
 
 from rest_framework.response import Response
 from rest_framework import status
 from . import serializers
 from .models import Users
 from department.models import Department
+import jwt
+from django.conf import settings
+
+#TODO: toda a parte de jwt foi feita para apenas playground, aconselho fazer via api's do DJANGO de JWT e também
+#usar a estrutura de users do django, pois ja trabalha corretamente com crypto de senhas e sessão..
+class LoginUser(GenericAPIView):
+    serializer_class = serializers.UsersSerializer
+
+    def post(self, request, *args, **kwargs):
+        try:
+            queryset = Users.objects.get(email=request.data['email'], password=request.data['password'])
+            serializer = self.get_serializer(queryset)
+            data = serializer.data
+
+            encoded_data = jwt.encode(data,
+                              key=settings.SECRET_KEY,
+                              algorithm="HS256")
+
+
+            data["tokens"] = str(encoded_data)
+
+            return Response(data, status=status.HTTP_200_OK)
+        except Exception as error:
+            return Response("Incorrect email or password", status=status.HTTP_400_BAD_REQUEST)
+
 
 class CreateUsersView(CreateAPIView):
 

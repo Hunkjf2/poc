@@ -12,6 +12,7 @@ django-cors-headers = "*"
 drf-spectacular = "*"
 django-environ = "*"
 pdfkit = "*"
+pyjwt = {version = "*", extras = ["crypto"]}
 
 [dev-packages]
 
